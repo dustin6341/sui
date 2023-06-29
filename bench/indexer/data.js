@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688057342902,
+  "lastUpdate": 1688059520965,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -59,6 +59,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 302744,
             "range": "± 26585",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "tmn@mystenlabs.com",
+            "name": "Todd Nowacki",
+            "username": "tnowacki"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c29e62377674fcd8f939411cc1975d35a8012929",
+          "message": "[move] Remove dead code from MVCC support (#12765)\n\n## Description \r\n\r\n- The effective owner map was used in an early version of the previous\r\nPR (#12055) and was not properly removed\r\n\r\n## Test Plan \r\n\r\n- Ran existing tests\r\n\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2023-06-29T17:16:09Z",
+          "tree_id": "20acab4e673f6f67fbc52c63006141fb616963c1",
+          "url": "https://github.com/MystenLabs/sui/commit/c29e62377674fcd8f939411cc1975d35a8012929"
+        },
+        "date": 1688059510105,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 267233,
+            "range": "± 17039",
             "unit": "ns/iter"
           }
         ]
