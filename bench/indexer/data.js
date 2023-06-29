@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688074829137,
+  "lastUpdate": 1688078932998,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -209,6 +209,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 308702,
             "range": "± 7857",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rvantonder@gmail.com",
+            "name": "Rijnard van Tonder",
+            "username": "rvantonder"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a537c1ebf17a0e7802488c003083a318586de531",
+          "message": "move: source service requires repo branch (#12667)\n\n## Description \r\n\r\nIntroduce a `branch` field in `config` when cloning repositories. If we\r\nrun the server on our code today, it won't verify source successfully\r\n(mismatch of `v1.5` framework packages `deepbook` and `sui-framework`\r\ndue to changes). We'll need this in general for other repositories.\r\n\r\n## Test Plan \r\n\r\nAdded test",
+          "timestamp": "2023-06-29T15:41:18-07:00",
+          "tree_id": "123fe0e14c8351b4c3de2a98899903902db1de42",
+          "url": "https://github.com/MystenLabs/sui/commit/a537c1ebf17a0e7802488c003083a318586de531"
+        },
+        "date": 1688078930414,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 263553,
+            "range": "± 27669",
             "unit": "ns/iter"
           }
         ]
