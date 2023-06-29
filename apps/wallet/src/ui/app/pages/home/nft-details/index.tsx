@@ -29,7 +29,8 @@ function NFTDetailsPage() {
 	const { nftFields, fileExtensionType, filePath } = useNFTBasicData(objectData);
 	const address = useActiveAddress();
 	const { data } = useGetKioskContents(address);
-	const isContainedInSuiKiosk = data?.kiosks.sui.some((k) => k.data?.objectId === nftId);
+
+	const isContainedInSuiKiosk = data?.list.some((k) => k.data?.objectId === nftId);
 
 	// Extract either the attributes, or use the top-level NFT fields:
 	const metaFields =
@@ -189,6 +190,21 @@ function NFTDetailsPage() {
 									/>
 								</div>
 							)}
+							<div className="mb-3 flex flex-1 items-end">
+								<Button
+									variant="primary"
+									size="tall"
+									disabled={!isTransferable}
+									to={`/nft-transfer/${nftId}`}
+									title={
+										isTransferable
+											? undefined
+											: "Unable to send. NFT doesn't have public transfer method"
+									}
+									text="Send NFT"
+									after={<ArrowRight16 />}
+								/>
+							</div>
 						</div>
 					</>
 				) : (
