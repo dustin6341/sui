@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688078932998,
+  "lastUpdate": 1688083171681,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -239,6 +239,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 263553,
             "range": "± 27669",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ashok@mystenlabs.com",
+            "name": "Ashok Menon",
+            "username": "amnn"
+          },
+          "committer": {
+            "email": "amenon94@gmail.com",
+            "name": "Ashok Menon",
+            "username": "amnn"
+          },
+          "distinct": true,
+          "id": "a1bac02e861d61c720115822a15e70a112cf21fc",
+          "message": "[sui-execution/v1] Hard code pack digest hash modules\n\nWe can't get rid of the alternate implementation of digest calculation\nuntil we drop support for protocol version 16 and below, but this is\none of the steps towards that.\n\nTest Plan:\n\nExisting tests",
+          "timestamp": "2023-06-29T16:47:29-07:00",
+          "tree_id": "a8d07261fd7754bca97a9afb95bf59484f466651",
+          "url": "https://github.com/MystenLabs/sui/commit/a1bac02e861d61c720115822a15e70a112cf21fc"
+        },
+        "date": 1688083169257,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 395795,
+            "range": "± 68901",
             "unit": "ns/iter"
           }
         ]
