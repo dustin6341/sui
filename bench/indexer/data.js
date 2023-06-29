@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688059520965,
+  "lastUpdate": 1688065125503,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -89,6 +89,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 267233,
             "range": "± 17039",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ashok@mystenlabs.com",
+            "name": "Ashok Menon",
+            "username": "amnn"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ccde381c981723b32df8e5cb895fc04d7cfd2a5d",
+          "message": "[sui-execution] README (#12767)\n\n## Description \r\n\r\nInternal documentation for working with `sui-execution`\r\n\r\n## Test Plan \r\n\r\n:eyes:",
+          "timestamp": "2023-06-29T18:48:47Z",
+          "tree_id": "cf54a5ef5a4819821a8f77d91c2da77609270125",
+          "url": "https://github.com/MystenLabs/sui/commit/ccde381c981723b32df8e5cb895fc04d7cfd2a5d"
+        },
+        "date": 1688065121250,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 301327,
+            "range": "± 20804",
             "unit": "ns/iter"
           }
         ]
