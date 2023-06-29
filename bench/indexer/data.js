@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688074567256,
+  "lastUpdate": 1688074829137,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -179,6 +179,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 262122,
             "range": "± 9757",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "106645797+sadhansood@users.noreply.github.com",
+            "name": "Sadhan Sood",
+            "username": "sadhansood"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1f35bc00127749e551a4760ae69320314c1ae776",
+          "message": "Improve db checkpoint handling (#12773)\n\n## Description \r\n\r\nThe current workflow of uploading db checkpoint only uploads in sequence\r\ni.e. it would wait forever if there could be gaps in epoch snapshot on\r\nthe remote storage. This is not a requirement and more often, we really\r\nwant to upload latest epochs and don't care if older epoch snapshots are\r\nthere or not.\r\nThis PR now makes it such that if there is a db checkpoint which is\r\npresent local but not on remote, it will upload it. Besides, it also\r\nimproves how garbage collection runs by making it not dependent on\r\nupload.\r\n\r\n## Test Plan \r\n\r\nAdded uni tests",
+          "timestamp": "2023-06-29T14:32:58-07:00",
+          "tree_id": "0347103d898e7b6ad6b87d3267e80a11dd874780",
+          "url": "https://github.com/MystenLabs/sui/commit/1f35bc00127749e551a4760ae69320314c1ae776"
+        },
+        "date": 1688074827030,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 308702,
+            "range": "± 7857",
             "unit": "ns/iter"
           }
         ]
