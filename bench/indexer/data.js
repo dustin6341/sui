@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688083171681,
+  "lastUpdate": 1688089728366,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -269,6 +269,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 395795,
             "range": "± 68901",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "106119108+gegaowp@users.noreply.github.com",
+            "name": "Ge Gao",
+            "username": "gegaowp"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4e684ec359dcfc02a504765a3d35445591450773",
+          "message": "indexer: de-dup fromOrToAddress digests (#12788)\n\n## Description \r\n\r\nDuplicate digests would happen when tx sender also has their own as\r\nrecipients.\r\n\r\n## Test Plan \r\n\r\ntesting on address\r\n`0x0000000000000000000000000000000000000000000000000000000000000000`\r\n\r\n```\r\ncurl --location --request POST http://127.0.0.1:3030 \\\r\n--header 'Content-Type: application/json' \\\r\n--data-raw '{\r\n    \"jsonrpc\": \"2.0\",\r\n    \"id\": 1,\r\n    \"method\": \"suix_queryTransactionBlocks\",\r\n    \"params\": [\r\n        {\r\n            \"filter\": {\r\n                \"FromOrToAddress\": {\"addr\": \"0x0000000000000000000000000000000000000000000000000000000000000000\"}\r\n            }\r\n        },\r\n        null,\r\n        5,\r\n        false\r\n    ]\r\n}' | jq\r\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\r\n                                 Dload  Upload   Total   Spent    Left  Speed\r\n100   984  100   667  100   317   1978    940 --:--:-- --:--:-- --:--:--  2972\r\n{\r\n  \"jsonrpc\": \"2.0\",\r\n  \"result\": {\r\n    \"data\": [\r\n      {\r\n        \"digest\": \"7CuBm1AnLgkBMB6GiEn5d3RizznF5LbawjJTs8A5dcXF\",\r\n        \"timestampMs\": \"1681318800000\",\r\n        \"checkpoint\": \"0\"\r\n      },\r\n      {\r\n        \"digest\": \"HneKYTSK8BKSxRftX3HEJrnLADzHVBQdHU7coCxaUw1T\",\r\n        \"timestampMs\": \"1681491604701\",\r\n        \"checkpoint\": \"85168\"\r\n      },\r\n      {\r\n        \"digest\": \"815xhvL4Xdan73ia922Ns58dhta7U1JaJbYvF8M1yJiJ\",\r\n        \"timestampMs\": \"1681578008541\",\r\n        \"checkpoint\": \"161191\"\r\n      },\r\n      {\r\n        \"digest\": \"3gKz11LNEX6B2bTubKqPeERADzA4BEw6DaQ4WrNoiv5e\",\r\n        \"timestampMs\": \"1681664411498\",\r\n        \"checkpoint\": \"237073\"\r\n      },\r\n      {\r\n        \"digest\": \"2Rom2LhVuUaiatCKUEKAJQwesM7PN95hLB5uYB7NW27y\",\r\n        \"timestampMs\": \"1681923621472\",\r\n        \"checkpoint\": \"467715\"\r\n      }\r\n    ],\r\n    \"nextCursor\": \"2Rom2LhVuUaiatCKUEKAJQwesM7PN95hLB5uYB7NW27y\",\r\n    \"hasNextPage\": true\r\n  },\r\n  \"id\": 1\r\n}\r\n```\r\n\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2023-06-29T21:39:02-04:00",
+          "tree_id": "310868a11c9991eedfc37a2500b7da4009b9c643",
+          "url": "https://github.com/MystenLabs/sui/commit/4e684ec359dcfc02a504765a3d35445591450773"
+        },
+        "date": 1688089726276,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 304931,
+            "range": "± 6531",
             "unit": "ns/iter"
           }
         ]
