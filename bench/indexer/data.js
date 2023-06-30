@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688133096801,
+  "lastUpdate": 1688139004546,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -359,6 +359,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 306841,
             "range": "± 6936",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "93547199+oxade@users.noreply.github.com",
+            "name": "oxade",
+            "username": "oxade"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6d3e9b9b1bf19cd33ab608233e8a527372d7b6c9",
+          "message": "[easy] improve comments (#12798)",
+          "timestamp": "2023-06-30T15:19:57Z",
+          "tree_id": "ab9e3b89e00cf3cc49a4454ae31a7e00c9e2fb30",
+          "url": "https://github.com/MystenLabs/sui/commit/6d3e9b9b1bf19cd33ab608233e8a527372d7b6c9"
+        },
+        "date": 1688139001161,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 308382,
+            "range": "± 20817",
             "unit": "ns/iter"
           }
         ]
