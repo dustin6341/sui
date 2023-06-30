@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688139004546,
+  "lastUpdate": 1688141600430,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -389,6 +389,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 308382,
             "range": "± 20817",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "106119108+gegaowp@users.noreply.github.com",
+            "name": "Ge Gao",
+            "username": "gegaowp"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "940bfb18fd37c849d3558b45a35d4a841fdb5d30",
+          "message": "indexer easy: re-enable object history population (#12799)\n\n## Description \r\n\r\ntitle\r\n\r\n## Test Plan \r\n\r\nlocal run and make sure object history will be populated.\r\n\r\nTODO:\r\n- will set up testing DB on mainnet & testnet to see the storage\r\nconsumption\r\n\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2023-06-30T16:05:37Z",
+          "tree_id": "41e961a13071d5800a36a968c3c692eb158ae900",
+          "url": "https://github.com/MystenLabs/sui/commit/940bfb18fd37c849d3558b45a35d4a841fdb5d30"
+        },
+        "date": 1688141598167,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 306264,
+            "range": "± 5311",
             "unit": "ns/iter"
           }
         ]
