@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688141600430,
+  "lastUpdate": 1688156818568,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -419,6 +419,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 306264,
             "range": "± 5311",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "mingwei@mystenlabs.com",
+            "name": "Mingwei Tian",
+            "username": "mwtian"
+          },
+          "committer": {
+            "email": "81660174+mwtian@users.noreply.github.com",
+            "name": "mwtian",
+            "username": "mwtian"
+          },
+          "distinct": true,
+          "id": "6911bf5eb83a8e47afe3da84e06b1b27c2ec0ec2",
+          "message": "[ConsensusHandler] recover last consensus index",
+          "timestamp": "2023-06-30T13:18:24-07:00",
+          "tree_id": "a4c8d4c9464d239fc0ccaa0371ae2ab7a3173fb9",
+          "url": "https://github.com/MystenLabs/sui/commit/6911bf5eb83a8e47afe3da84e06b1b27c2ec0ec2"
+        },
+        "date": 1688156816165,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 351933,
+            "range": "± 59162",
             "unit": "ns/iter"
           }
         ]
