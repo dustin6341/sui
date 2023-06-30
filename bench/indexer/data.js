@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688099838417,
+  "lastUpdate": 1688133096801,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -329,6 +329,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 310717,
             "range": "± 25096",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "zl9394@gmail.com",
+            "name": "longbowlu",
+            "username": "longbowlu"
+          },
+          "committer": {
+            "email": "bwilliams.eng@gmail.com",
+            "name": "Brandon Williams",
+            "username": "bmwill"
+          },
+          "distinct": true,
+          "id": "207be158228e113f47b766cb0a5db5cdf6a730aa",
+          "message": "use live object iter",
+          "timestamp": "2023-06-30T08:40:49-05:00",
+          "tree_id": "ef233b56c764ca91238819b20aaabd941dfff7d4",
+          "url": "https://github.com/MystenLabs/sui/commit/207be158228e113f47b766cb0a5db5cdf6a730aa"
+        },
+        "date": 1688133094713,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 306841,
+            "range": "± 6936",
             "unit": "ns/iter"
           }
         ]
