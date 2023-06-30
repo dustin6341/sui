@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688156818568,
+  "lastUpdate": 1688167729486,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -449,6 +449,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 351933,
             "range": "± 59162",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "103447440+mystenmark@users.noreply.github.com",
+            "name": "Mark Logan",
+            "username": "mystenmark"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f1a7a4b2fd858e05a3f511d2ecb6964fc95a827f",
+          "message": "Checkpoint fork detection (#12804)",
+          "timestamp": "2023-06-30T23:20:18Z",
+          "tree_id": "613c40dcb7524cac14972774606f10876e064e1c",
+          "url": "https://github.com/MystenLabs/sui/commit/f1a7a4b2fd858e05a3f511d2ecb6964fc95a827f"
+        },
+        "date": 1688167727197,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 440573,
+            "range": "± 77223",
             "unit": "ns/iter"
           }
         ]
