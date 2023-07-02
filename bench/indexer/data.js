@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688174978637,
+  "lastUpdate": 1688327348395,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -509,6 +509,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 297997,
             "range": "± 21551",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "eugene@mystenlabs.com",
+            "name": "Eugene Boguslavsky",
+            "username": "ebmifa"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "02dc79891fd88de2731229dd557911f0f6e3073c",
+          "message": "Sui v1.5.0 Branch Cut Framework snapshot (#12816)\n\n## Description \r\n\r\n`cargo run --bin sui-framework-snapshot`",
+          "timestamp": "2023-07-02T14:40:50-05:00",
+          "tree_id": "c44635a149978355804ba55ceed65fcb66649168",
+          "url": "https://github.com/MystenLabs/sui/commit/02dc79891fd88de2731229dd557911f0f6e3073c"
+        },
+        "date": 1688327346141,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 386266,
+            "range": "± 77086",
             "unit": "ns/iter"
           }
         ]
