@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688327348395,
+  "lastUpdate": 1688331840508,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -539,6 +539,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 386266,
             "range": "± 77086",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "eugene@mystenlabs.com",
+            "name": "Eugene Boguslavsky",
+            "username": "ebmifa"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "20ec2730b47764cabc37870efa21e45262b0c7c9",
+          "message": "Sui v1.6.0 version bump (#12817)\n\n## Description \r\n\r\nSui v1.6.0 version bump\r\n\r\n## Test Plan \r\n👀",
+          "timestamp": "2023-07-02T20:54:00Z",
+          "tree_id": "c9ea9d119bf333e6d88f3cdde8f1b62c38499725",
+          "url": "https://github.com/MystenLabs/sui/commit/20ec2730b47764cabc37870efa21e45262b0c7c9"
+        },
+        "date": 1688331837828,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 345472,
+            "range": "± 25816",
             "unit": "ns/iter"
           }
         ]
