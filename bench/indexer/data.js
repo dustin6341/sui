@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688378974947,
+  "lastUpdate": 1688379929708,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -599,6 +599,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 347778,
             "range": "± 16754",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "51927076+phoenix-o@users.noreply.github.com",
+            "name": "phoenix",
+            "username": "phoenix-o"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "379f285115942cc45bd4e3d043eaf83276701651",
+          "message": "periodic compaction for effects (#12624)\n\nextends periodic compaction functionality to SST files of cfs affected\r\nby effects pruning",
+          "timestamp": "2023-07-03T12:18:06+02:00",
+          "tree_id": "7a6b885320b62d6a23e31fab6f888b9c6e4880a7",
+          "url": "https://github.com/MystenLabs/sui/commit/379f285115942cc45bd4e3d043eaf83276701651"
+        },
+        "date": 1688379927679,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 351508,
+            "range": "± 23296",
             "unit": "ns/iter"
           }
         ]
