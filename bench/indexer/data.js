@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688331840508,
+  "lastUpdate": 1688378974947,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -569,6 +569,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 345472,
             "range": "± 25816",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "adam@mystenlabs.com",
+            "name": "Adam Welc",
+            "username": "awelc"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4c63de131d75600f50ba8906012dc62f8f74d0ee",
+          "message": "[move-compiler] A workaround to avoid spurious warning for module initializers (#12820)\n\n## Description \r\n\r\nThis is a temporary workaround (until we can do this properly on the Sui\r\nside) to avoid signaling that a module initializer is unused (and thus\r\nimplying that it is not called by the runtime).\r\n\r\n## Test Plan \r\n\r\nA test has been added\r\n\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [x] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes\r\n\r\nNo longer signal that a module initializer function is unused.",
+          "timestamp": "2023-07-03T02:59:02-07:00",
+          "tree_id": "9193ff99b92f10e70e0b75a52bb5dc15d48e76db",
+          "url": "https://github.com/MystenLabs/sui/commit/4c63de131d75600f50ba8906012dc62f8f74d0ee"
+        },
+        "date": 1688378972945,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 347778,
+            "range": "± 16754",
             "unit": "ns/iter"
           }
         ]
