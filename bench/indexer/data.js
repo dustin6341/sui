@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688405851777,
+  "lastUpdate": 1688428408539,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -689,6 +689,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 312471,
             "range": "± 25397",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "106645797+sadhansood@users.noreply.github.com",
+            "name": "Sadhan Sood",
+            "username": "sadhansood"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "db9427edb5b263069a03ca244ddd89f740b60787",
+          "message": "Add library function to hard link a dir (#12781)\n\n## Description \r\n\r\nThis PR adds a library function to recursively hard link a directory.\r\nThis is going to be useful for scenarios where we want to restore a db\r\nfrom a state snapshot without compromising the consistency of the\r\noriginal db. If the restore fails on hard linked db, node can fall back\r\nto state sync based catchup.\r\n\r\n## Test Plan \r\n\r\nAdded a unit test",
+          "timestamp": "2023-07-03T16:43:48-07:00",
+          "tree_id": "3616673eac9b5904624438c312567ea16bec4330",
+          "url": "https://github.com/MystenLabs/sui/commit/db9427edb5b263069a03ca244ddd89f740b60787"
+        },
+        "date": 1688428406507,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 304426,
+            "range": "± 18935",
             "unit": "ns/iter"
           }
         ]
