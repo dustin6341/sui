@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688405782132,
+  "lastUpdate": 1688405851777,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -659,6 +659,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 516067,
             "range": "± 61601",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "8418040+longbowlu@users.noreply.github.com",
+            "name": "Lu Zhang",
+            "username": "longbowlu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "964a7070c45bfa626b0165069f709bb523856db3",
+          "message": "log slow queries. Don't log success queries or user input errors. (#12809)\n\n## Description \r\n\r\n1. don't log success queries and user error queries\r\n2. log queries (success + failed) when it takes longer than the\r\nthreshold to finish.\r\n\r\n## Test Plan \r\n\r\nCI\r\n\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes\r\nLog slow queries. Don't log success queries or user input errors.",
+          "timestamp": "2023-07-03T10:26:42-07:00",
+          "tree_id": "e748afb5fad332c144529ee3c2f2824964247b29",
+          "url": "https://github.com/MystenLabs/sui/commit/964a7070c45bfa626b0165069f709bb523856db3"
+        },
+        "date": 1688405849254,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 312471,
+            "range": "± 25397",
             "unit": "ns/iter"
           }
         ]
