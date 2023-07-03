@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688379929708,
+  "lastUpdate": 1688405782132,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -629,6 +629,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 351508,
             "range": "± 23296",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "8418040+longbowlu@users.noreply.github.com",
+            "name": "Lu Zhang",
+            "username": "longbowlu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "12552a99bad69d3bc9aa6f41d39ea972b1861bb5",
+          "message": "Do not use alternate server name on Sui Node (#12807)\n\n## Description \r\n\r\nNow that we are a couple of protocol upgrades ahead of introducing\r\n`alternate_server_name`, it's safe to remove it.\r\n\r\n## Test Plan \r\n\r\nCI\r\n\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes\r\nDo not use alternate server name on Sui Node",
+          "timestamp": "2023-07-03T10:26:19-07:00",
+          "tree_id": "5c7b5773654db01495744ae278ff3e2254823dd3",
+          "url": "https://github.com/MystenLabs/sui/commit/12552a99bad69d3bc9aa6f41d39ea972b1861bb5"
+        },
+        "date": 1688405779915,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 516067,
+            "range": "± 61601",
             "unit": "ns/iter"
           }
         ]
