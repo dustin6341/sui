@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688463466903,
+  "lastUpdate": 1688491426796,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -779,6 +779,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 438400,
             "range": "± 62511",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "113150618+dariorussi@users.noreply.github.com",
+            "name": "Dario Russi",
+            "username": "dariorussi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8917ce4215b0f79095c11695e199c2d2c5bd67dd",
+          "message": "Rework gas logic (#12676)\n\n## Description \r\n\r\nThis is a refactor of the gas logic that better isolates version checks\r\nand gas operations.\r\nThe change looks bigger than it is because of deletion and protocol\r\nchanges.\r\n\r\nGas model v1 has been deleted entirely given it was a pre-mainnet\r\nsolution. That removed code for the gas model v1, a bunch of code in\r\n`TemporaryStore`, some tests, and a bit of cleanup in several spots.\r\n`crates/sui-cost-tables` has been removed and the 2 files needed have\r\nbeen moved in `crates/sui-types`; that does not make any change in\r\ndependencies so it's good.\r\n\r\nWe introduced a `GasCharger` which is the main instance that tracks\r\neverything about gas in transactions.\r\nGas objects are also \"embedded\" in there, so that is the only object\r\nthat is passed around during execution.\r\nWe can and should clean up a bit more around system vs users\r\ntransactions but this is already a decent step forward, and that clean\r\nup is non trivial, so better have that in a different PR.\r\n\r\nI still have to clean up tests and introduce a better model for gas\r\ntesting. They are brittle and not easy to manage still. In another PR\r\nthough.\r\n\r\nWe also introduce a new protocol version that protects towards a new\r\ncheck on the budget to verify that it is greater than the minimum charge\r\n(the lowest bucket of execution). That does not change the cost of any\r\nsuccessful transaction, it will simply not allow to pay under minimum\r\ncost, run out of gas anyway, but still run (with all implications). Now\r\ntransactions are verified at signing time that the budget is over the\r\nminimum.\r\n\r\n## Test Plan \r\n\r\nExisting tests, few adjusted for minimum budget that has changed.\r\nI will sync a full node from genesis both for mainnet and testnet to\r\nverify that no fork has been introduced.\r\nI will also run a node that performs conservation checks to make sure\r\nthings are good.\r\n\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2023-07-04T12:16:23-05:00",
+          "tree_id": "1352de69b39fad36442594ff51c534bb93105a99",
+          "url": "https://github.com/MystenLabs/sui/commit/8917ce4215b0f79095c11695e199c2d2c5bd67dd"
+        },
+        "date": 1688491424098,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 261894,
+            "range": "± 34216",
             "unit": "ns/iter"
           }
         ]
