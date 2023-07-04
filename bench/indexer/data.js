@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688491426796,
+  "lastUpdate": 1688492101079,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -809,6 +809,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 261894,
             "range": "± 34216",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rvantonder@gmail.com",
+            "name": "Rijnard van Tonder",
+            "username": "rvantonder"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "60802f7b414aaa1ff5b8c0f8c5fe4fe8198ff87a",
+          "message": "move: remove unwrap in source service (#12826)\n\n## Description \r\n\r\nJust a quick fix up to get better errors.\r\n\r\n## Test Plan \r\n\r\nManual, does not functionally changing feature behavior.",
+          "timestamp": "2023-07-04T11:27:30-06:00",
+          "tree_id": "68c3e1888ce2542ab77e5e046354cbf30234bb7d",
+          "url": "https://github.com/MystenLabs/sui/commit/60802f7b414aaa1ff5b8c0f8c5fe4fe8198ff87a"
+        },
+        "date": 1688492098895,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 306907,
+            "range": "± 22856",
             "unit": "ns/iter"
           }
         ]
