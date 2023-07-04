@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688428408539,
+  "lastUpdate": 1688442740002,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -719,6 +719,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 304426,
             "range": "± 18935",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "108701016+joyqvq@users.noreply.github.com",
+            "name": "Joy Wang",
+            "username": "joyqvq"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "506a748f7cac12427f1ae79eec990ea950ad41bc",
+          "message": "fix: add protocol version for upgraded multisig (#12812)\n\n## Description \r\n\r\n1.4.0 accepts both legacy and upgraded multisig. 1.3.0 only accepts\r\nlegacy multisig. this is to make upgraded multisig enabled only for\r\nprotocol version >= 18 when all validators upgrade.\r\n## Test Plan \r\n\r\nHow did you test the new or updated feature?\r\n\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2023-07-03T20:42:23-07:00",
+          "tree_id": "141c4ea6a69f050333f5fea9cbfcfe131e40b978",
+          "url": "https://github.com/MystenLabs/sui/commit/506a748f7cac12427f1ae79eec990ea950ad41bc"
+        },
+        "date": 1688442737933,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 258359,
+            "range": "± 26463",
             "unit": "ns/iter"
           }
         ]
