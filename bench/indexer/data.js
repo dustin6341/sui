@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688492101079,
+  "lastUpdate": 1688496986503,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -839,6 +839,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 306907,
             "range": "± 22856",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rvantonder@gmail.com",
+            "name": "Rijnard van Tonder",
+            "username": "rvantonder"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d950c5c0a99274a28bf5965d11782a277f750d9f",
+          "message": "move: minimal end-to-end source service (#12832)\n\n## Description \r\n\r\nAdds minimal end-to-end support to serve source code given an address and\r\nmodule, e.g.,:\r\n\r\n```\r\ncurl http://0.0.0.0:8000/api?address=0x2&module=address\r\n```\r\n\r\n## Test Plan \r\n\r\nExtends the integration test to resolve address/module pairs for an\r\nexample package.",
+          "timestamp": "2023-07-04T12:46:52-06:00",
+          "tree_id": "0abfa5ae5918a5e9e862a9e8550b9cfb124b0003",
+          "url": "https://github.com/MystenLabs/sui/commit/d950c5c0a99274a28bf5965d11782a277f750d9f"
+        },
+        "date": 1688496984814,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 308242,
+            "range": "± 10093",
             "unit": "ns/iter"
           }
         ]
