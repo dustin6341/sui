@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688442740002,
+  "lastUpdate": 1688463466903,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -749,6 +749,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 258359,
             "range": "± 26463",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "alex@mystenlabs.com",
+            "name": "Alex Tsiliris",
+            "username": "Eis-D-Z"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9188d532f72cea63b3aeffcd42aca02259d2ef45",
+          "message": "Increase reference gas price slightly to avoid failure after epoch change (#12602)\n\n## Description \r\n\r\nOn epoch change, a transaction that will be retried might fail due to\r\nhaving too low reference_gas_price set. This increases the gas_price\r\nslightly. Today there is no other consequence, in the future this might\r\nmean that the gas payed for the transaction will be slightly higher than\r\nlowest possible.\r\n\r\n## Test Plan \r\n\r\nExisting tests.\r\n\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2023-07-04T12:29:03+03:00",
+          "tree_id": "9fa0db47d8a4790de7bd8b649f9991e2cb76856d",
+          "url": "https://github.com/MystenLabs/sui/commit/9188d532f72cea63b3aeffcd42aca02259d2ef45"
+        },
+        "date": 1688463464482,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 438400,
+            "range": "± 62511",
             "unit": "ns/iter"
           }
         ]
