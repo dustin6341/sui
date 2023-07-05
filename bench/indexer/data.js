@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688586116277,
+  "lastUpdate": 1688587775776,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -1049,6 +1049,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 352629,
             "range": "± 22051",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rvantonder@gmail.com",
+            "name": "Rijnard van Tonder",
+            "username": "rvantonder"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7c8290757bae4fabf94db98930a9027c4e335da1",
+          "message": "move: source service eagerly hydrates modules in memory (#12840)\n\n## Description \r\n\r\nEagerly reads and hydrates source code on server start. Doing this\r\neagerly is reasonable right now since source is small (we might opt for\r\ngzip later too):\r\n\r\n```\r\n244K    sui-framework/packages/deepbook/sources\r\n 72K    sui-framework/packages/move-stdlib/sources\r\n348K    sui-framework/packages/sui-framework/sources\r\n240K    sui-framework/packages/sui-system/sources\r\n```\r\n\r\nThe type is set up with `Option` to allow hydrating source on first\r\nrequest too, but I didn't want to go that route because then we need to\r\nimplemented a writer lock and seems pretty overkill given scope right\r\nnow.\r\n\r\n\r\n---\r\n\r\nFor fun I looked at the local latency difference before/after this PR.\r\nThis isn't really meaningful on a local setup, but I've got the tooling\r\nset up with `vegeta` for testing eventual deployment so figured to look\r\nanyway.\r\n\r\n100 requests per second over 15 seconds (latencies generally lower with\r\nthis PR).\r\n\r\nBefore\r\n\r\n```\r\nRequests      [total, rate, throughput]  1500, 100.07, 100.06\r\nDuration      [total, attack, wait]      14.991483416s, 14.989767291s, 1.716125ms\r\nLatencies     [mean, 50, 95, 99, max]    1.544413ms, 1.475097ms, 2.169692ms, 3.43996ms, 8.906125ms\r\nBytes In      [total, mean]              5073000, 3382.00\r\n```\r\n\r\nAfter\r\n\r\n```\r\nRequests      [total, rate, throughput]  1500, 100.07, 100.06\r\nDuration      [total, attack, wait]      14.991182792s, 14.990031292s, 1.1515ms\r\nLatencies     [mean, 50, 95, 99, max]    1.316599ms, 1.270261ms, 1.769853ms, 2.501024ms, 5.567708ms\r\nBytes In      [total, mean]              5073000, 3382.00\r\n```\r\n\r\n## Test Plan \r\n\r\nUpdated test to use hydrated value.",
+          "timestamp": "2023-07-05T13:59:13-06:00",
+          "tree_id": "3cb87270b8d2376ac26eda50e8c530562470078b",
+          "url": "https://github.com/MystenLabs/sui/commit/7c8290757bae4fabf94db98930a9027c4e335da1"
+        },
+        "date": 1688587773642,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 278708,
+            "range": "± 20232",
             "unit": "ns/iter"
           }
         ]
