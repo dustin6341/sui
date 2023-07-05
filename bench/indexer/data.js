@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688594308144,
+  "lastUpdate": 1688597201499,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -1109,6 +1109,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 259996,
             "range": "± 25429",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "103447440+mystenmark@users.noreply.github.com",
+            "name": "Mark Logan",
+            "username": "mystenmark"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d0c78f3a476de8499af9d7336bae9bb4c378b15e",
+          "message": "Revert change to system transaction gas data (#12848)\n\nthis change (from #12676) broke compatibility since it was not gated -\r\nif the change was necessary we will have to put in a feature flag",
+          "timestamp": "2023-07-05T15:36:53-07:00",
+          "tree_id": "f63704d261117d00546fb6f270002cd724c6a565",
+          "url": "https://github.com/MystenLabs/sui/commit/d0c78f3a476de8499af9d7336bae9bb4c378b15e"
+        },
+        "date": 1688597199174,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 303585,
+            "range": "± 19102",
             "unit": "ns/iter"
           }
         ]
