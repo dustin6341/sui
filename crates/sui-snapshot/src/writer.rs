@@ -216,12 +216,46 @@ pub struct StateSnapshotWriterV1 {
     local_staging_dir_root: PathBuf,
     file_compression: FileCompression,
     remote_object_store: Arc<DynObjectStore>,
-    local_object_store: Arc<DynObjectStore>,
+    local_staging_store: Arc<DynObjectStore>,
     concurrency: usize,
     include_wrapped_tombstone: bool,
 }
 
 impl StateSnapshotWriterV1 {
+    pub async fn new_from_store(
+        epoch: u64,
+        local_staging_path: &std::path::Path,
+        local_staging_store: &Arc<DynObjectStore>,
+        remote_object_store: &Arc<DynObjectStore>,
+        file_compression: FileCompression,
+        concurrency: NonZeroUsize,
+        include_wrapped_tombstone: bool,
+    ) -> Result<Self> {
+        let epoch_dir = format!("epoch_{epoch}");
+        // Delete remote epoch dir if it exists
+        delete_recursively(
+            &Path::from(epoch_dir.clone()),
+            remote_object_store.clone(),
+            concurrency,
+        )
+        .await?;
+        // Delete local staging epoch dir if it exists
+        let local_epoch_dir_path = local_staging_path.join(epoch_dir);
+        if local_epoch_dir_path.exists() {
+            fs::remove_dir_all(&local_epoch_dir_path)?;
+        }
+        fs::create_dir_all(&local_epoch_dir_path)?;
+        Ok(StateSnapshotWriterV1 {
+            epoch,
+            file_compression,
+            local_staging_dir: File::open(local_epoch_dir_path)?,
+            local_staging_dir_root: local_staging_path.to_path_buf(),
+            remote_object_store: remote_object_store.clone(),
+            local_staging_store: local_staging_store.clone(),
+            concurrency: concurrency.get(),
+            include_wrapped_tombstone,
+        })
+    }
     pub async fn new(
         epoch: u64,
         local_store_config: &ObjectStoreConfig,
@@ -240,7 +274,7 @@ impl StateSnapshotWriterV1 {
         )
         .await?;
 
-        let local_object_store = local_store_config.make()?;
+        let local_staging_store = local_store_config.make()?;
         let local_staging_dir_root = local_store_config
             .directory
             .as_ref()
@@ -250,10 +284,7 @@ impl StateSnapshotWriterV1 {
         // Delete local epoch dir if it exists
         let local_epoch_dir_path = local_staging_dir_root.join(&epoch_dir);
         if local_epoch_dir_path.exists() {
-            return Err(anyhow!(
-                "Local epoch dir already exists: {:?}",
-                local_epoch_dir_path
-            ));
+            fs::remove_dir_all(&local_epoch_dir_path)?;
         }
         fs::create_dir_all(&local_epoch_dir_path)?;
         let local_staging_dir = File::open(&local_epoch_dir_path)?;
@@ -263,7 +294,7 @@ impl StateSnapshotWriterV1 {
             local_staging_dir_root,
             file_compression,
             remote_object_store,
-            local_object_store,
+            local_staging_store,
             concurrency: concurrency.get(),
             include_wrapped_tombstone,
         })
@@ -273,7 +304,7 @@ impl StateSnapshotWriterV1 {
         let epoch = self.epoch;
         let manifest_file_path = self.epoch_dir().child("MANIFEST");
         let local_staging_dir_root = self.local_staging_dir_root.clone();
-        let local_object_store = self.local_object_store.clone();
+        let local_object_store = self.local_staging_store.clone();
         let remote_object_store = self.remote_object_store.clone();
 
         let upload_handle = self.start_upload(receiver)?;
@@ -305,7 +336,7 @@ impl StateSnapshotWriterV1 {
         receiver: Receiver<FileMetadata>,
     ) -> Result<JoinHandle<Result<Vec<()>, anyhow::Error>>> {
         let remote_object_store = self.remote_object_store.clone();
-        let local_object_store = self.local_object_store.clone();
+        let local_staging_store = self.local_staging_store.clone();
         let local_dir_path = self.local_staging_dir_root.clone();
         let epoch_dir = self.epoch_dir();
         let upload_concurrency = self.concurrency;
@@ -314,7 +345,7 @@ impl StateSnapshotWriterV1 {
                 .map(|file_metadata| {
                     let file_path = file_metadata.file_path(&epoch_dir);
                     let remote_object_store = remote_object_store.clone();
-                    let local_object_store = local_object_store.clone();
+                    let local_object_store = local_staging_store.clone();
                     let local_dir_path = local_dir_path.clone();
                     async move {
                         Self::sync_file_to_remote(

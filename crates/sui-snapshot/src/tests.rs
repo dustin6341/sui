@@ -21,7 +21,7 @@ fn temp_dir() -> std::path::PathBuf {
         .into_path()
 }
 
-fn insert_keys(
+pub fn insert_keys(
     db: &AuthorityPerpetualTables,
     total_unique_object_ids: u64,
 ) -> Result<(), anyhow::Error> {

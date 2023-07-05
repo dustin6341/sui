@@ -93,6 +93,7 @@ use sui_network::discovery;
 use sui_network::discovery::TrustedPeerChangeEvent;
 use sui_network::state_sync;
 use sui_protocol_config::{ProtocolConfig, SupportedProtocolVersions};
+use sui_snapshot::uploader::StateSnapshotUploader;
 use sui_storage::object_store::{ObjectStoreConfig, ObjectStoreType};
 use sui_storage::{FileCompression, IndexStore, StorageFormat};
 use sui_types::base_types::{AuthorityName, EpochId};
@@ -159,6 +160,8 @@ pub struct SuiNode {
     sim_state: SimState,
 
     _state_archive_handle: Option<broadcast::Sender<()>>,
+
+    _state_snapshot_uploader_handle: Option<oneshot::Sender<()>>,
 }
 
 impl fmt::Debug for SuiNode {
@@ -406,6 +409,20 @@ impl SuiNode {
         } else {
             None
         };
+        let state_snapshot_handle = if let Some(remote_store_config) =
+            &config.state_snapshot_write_config.object_store_config
+        {
+            let snapshot_uploader = StateSnapshotUploader::new(
+                &config.db_checkpoint_path(),
+                &config.snapshot_path(),
+                remote_store_config.clone(),
+                60,
+                &prometheus_registry,
+            )?;
+            Some(snapshot_uploader.start())
+        } else {
+            None
+        };
         let db_checkpoint_config = if config.db_checkpoint_config.checkpoint_path.is_none() {
             DBCheckpointConfig {
                 checkpoint_path: Some(config.db_checkpoint_path()),
@@ -431,6 +448,7 @@ impl SuiNode {
                     config.indirect_objects_threshold,
                     config.authority_store_pruning_config,
                     &prometheus_registry,
+                    state_snapshot_handle.is_some(),
                 )?;
                 Some(handler.start())
             }
@@ -590,6 +608,7 @@ impl SuiNode {
             },
 
             _state_archive_handle: state_archive_handle,
+            _state_snapshot_uploader_handle: state_snapshot_handle,
         };
 
         info!("SuiNode started!");

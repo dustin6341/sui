@@ -2744,6 +2744,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "dir-diff"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2860407d7d7e2e004bb2128510ad9e8d669e76fa005ccf567977b5d71b8b4a0b"
+dependencies = [
+ "walkdir",
+]
+
+[[package]]
 name = "directories"
 version = "4.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -10227,6 +10236,7 @@ dependencies = [
  "sui-network",
  "sui-protocol-config",
  "sui-simulator",
+ "sui-snapshot",
  "sui-storage",
  "sui-telemetry",
  "sui-tls",
@@ -10598,6 +10608,7 @@ dependencies = [
  "bcs",
  "byteorder",
  "bytes",
+ "dir-diff",
  "fastcrypto",
  "futures",
  "integer-encoding",

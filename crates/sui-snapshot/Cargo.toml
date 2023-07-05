@@ -35,3 +35,4 @@ workspace-hack = { version = "0.1", path = "../workspace-hack" }
 
 [dev-dependencies]
 tempfile.workspace = true
+dir-diff = { version = "0.3.2" }
