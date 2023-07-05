@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688573405659,
+  "lastUpdate": 1688578203115,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -929,6 +929,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 311219,
             "range": "± 22414",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "108701016+joyqvq@users.noreply.github.com",
+            "name": "Joy Wang",
+            "username": "joyqvq"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e29074700439cc073a41a0d3f7abc8266a90eb86",
+          "message": "chore: reorder protocol version 17, 18 (#12839)\n\n## Description \r\n\r\nto match with https://github.com/MystenLabs/sui/pull/12837,\r\nexecution_version will go out with v18 (in 1.5.0) whereas the multisig\r\nfeature flag will be released with 1.4.2 in v17.\r\n\r\n## Test Plan \r\n\r\nHow did you test the new or updated feature?\r\n\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2023-07-05T17:23:03Z",
+          "tree_id": "716bb7d1606ef2d7bc27c3e03ecdb1de6e525a12",
+          "url": "https://github.com/MystenLabs/sui/commit/e29074700439cc073a41a0d3f7abc8266a90eb86"
+        },
+        "date": 1688578200045,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 301782,
+            "range": "± 4295",
             "unit": "ns/iter"
           }
         ]
