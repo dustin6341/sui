@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688597201499,
+  "lastUpdate": 1688599892005,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -1139,6 +1139,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 303585,
             "range": "± 19102",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "mingwei@mystenlabs.com",
+            "name": "MW Tian",
+            "username": "mwtian"
+          },
+          "committer": {
+            "email": "81660174+mwtian@users.noreply.github.com",
+            "name": "mwtian",
+            "username": "mwtian"
+          },
+          "distinct": true,
+          "id": "3c131953f32959a7800b926bd6f7f6434587b750",
+          "message": "[Narwhal] compute and log ConsensusOutput digest",
+          "timestamp": "2023-07-05T16:19:24-07:00",
+          "tree_id": "bc9e463333e6902829f9fc1b49f9a4c05ffd96c6",
+          "url": "https://github.com/MystenLabs/sui/commit/3c131953f32959a7800b926bd6f7f6434587b750"
+        },
+        "date": 1688599889546,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 415218,
+            "range": "± 35425",
             "unit": "ns/iter"
           }
         ]
