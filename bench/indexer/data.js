@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688527480447,
+  "lastUpdate": 1688573405659,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -899,6 +899,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 312966,
             "range": "± 26208",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "123408603+healthydeve@users.noreply.github.com",
+            "name": "Jian Lu",
+            "username": "healthydeve"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4c68bb5239fb6d6d682b607b8d278388810d79da",
+          "message": "[sui-test-validator] Implementing a persisted state that takes in network config (#12451)\n\n## Description \r\n\r\nThis PR adds the option to run `sui-test-validator` with a config\r\ndirectory passed in.\r\n\r\nThis is a rewrite of\r\nhttps://github.com/MystenLabs/sui/commit/f8477e811c1f6e1f26814ad16888748e10f0060f\r\nto use builder patterns in the network builders instead so that the code\r\nis cleaner and has less duplication.\r\n\r\nIn this current implementation I added an extra wallet account that\r\npopulates in the network config so a faucet can be spun up from that\r\nconfig.\r\n\r\n1. Generate a config to store db and genesis configs `sui genesis -f\r\n--with-faucet --working-dir=[some-directory]`\r\n2. `sui-test-validator --config-dir [some-directory]`\r\n\r\n## Test Plan \r\n\r\nHow did you test the new or updated feature?\r\nlocal run\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2023-07-05T12:03:00-04:00",
+          "tree_id": "e25a229d1cac23e39862d66e9ebb920874a27c87",
+          "url": "https://github.com/MystenLabs/sui/commit/4c68bb5239fb6d6d682b607b8d278388810d79da"
+        },
+        "date": 1688573403289,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 311219,
+            "range": "± 22414",
             "unit": "ns/iter"
           }
         ]
