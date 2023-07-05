@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688496986503,
+  "lastUpdate": 1688527480447,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -869,6 +869,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 308242,
             "range": "± 10093",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "115710624+wiggins-dev@users.noreply.github.com",
+            "name": "wiggins-dev",
+            "username": "wiggins-dev"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a831c38fe094492ed115809ce18da52253d61566",
+          "message": "[Deepbook] Support creating customized pool (#12819)\n\n## Description \r\n\r\nAdd entry function for creating pool with customized taker fee rete and\r\nmaker rebate rate.\r\nNo extra test needed since it is just a simple wrapper function.\r\n\r\n\r\n## Test Plan \r\n\r\nRun deepbook unit test.\r\n\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [✅] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [✅] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2023-07-04T23:17:09-04:00",
+          "tree_id": "c3f3de0d3ad94bf058c68bd118c9eac72cb08f47",
+          "url": "https://github.com/MystenLabs/sui/commit/a831c38fe094492ed115809ce18da52253d61566"
+        },
+        "date": 1688527478453,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 312966,
+            "range": "± 26208",
             "unit": "ns/iter"
           }
         ]
