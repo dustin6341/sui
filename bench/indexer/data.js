@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688587775776,
+  "lastUpdate": 1688594308144,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -1079,6 +1079,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 278708,
             "range": "± 20232",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "93547199+oxade@users.noreply.github.com",
+            "name": "oxade",
+            "username": "oxade"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2bc00efbfd010bc4919818844ceecdebaff1c0a7",
+          "message": "[easy] fix name clobbering (#12790)",
+          "timestamp": "2023-07-05T14:48:57-07:00",
+          "tree_id": "253538d891cfd9af4a00153cceea9019a70c3d9e",
+          "url": "https://github.com/MystenLabs/sui/commit/2bc00efbfd010bc4919818844ceecdebaff1c0a7"
+        },
+        "date": 1688594306054,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 259996,
+            "range": "± 25429",
             "unit": "ns/iter"
           }
         ]
