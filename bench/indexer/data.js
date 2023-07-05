@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688578203115,
+  "lastUpdate": 1688580016795,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -959,6 +959,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 301782,
             "range": "± 4295",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "damirka.ru@gmail.com",
+            "name": "Damir Shamanaev",
+            "username": "damirka"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8e86b48110fca607689210f46e0fb938d7d5be21",
+          "message": "[framework] don't emit event on purchase with PurchaseCap (#12821)\n\n## Motivation\r\n\r\nPurchaseCap functionality is created specifically for extensions and\r\nlogic which may or may not be considered trading. And emitting an event\r\nwhen \"purchasing\" with the Cap breaks indexers and makes little sense -\r\nItemListed is not emitted, ItemDelisted as well.\r\n\r\nCurrently, all extensions rely on custom events for this purpose.\r\n\r\n## Description \r\n\r\nChanges the body of the `kiosk::purchase_with_cap` to NOT emit the\r\nItemPurchased event. Everything else is left intact.\r\n\r\n## Test Plan \r\n\r\nCurrent tests pass.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [x] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes\r\n\r\n- The `kiosk::purchase_with_cap` method for [Sui\r\nKiosk](https://docs.sui.io/build/sui-kiosk) no longer emits the\r\n`ItemPurchased` event. This is a network optimization update that should\r\nhave minimal impact. If the logic of your application does rely on this\r\nevent, you must change it to leverage custom events instead.",
+          "timestamp": "2023-07-05T20:50:04+03:00",
+          "tree_id": "2bbe7609d627fd6953e5d08b56680fe4a3f41ab4",
+          "url": "https://github.com/MystenLabs/sui/commit/8e86b48110fca607689210f46e0fb938d7d5be21"
+        },
+        "date": 1688580014422,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 272505,
+            "range": "± 21919",
             "unit": "ns/iter"
           }
         ]
