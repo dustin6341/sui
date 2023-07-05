@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688580450800,
+  "lastUpdate": 1688586116277,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -1019,6 +1019,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 308731,
             "range": "± 17301",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "106645797+sadhansood@users.noreply.github.com",
+            "name": "Sadhan Sood",
+            "username": "sadhansood"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "04092e736b96065c88d0ab138abd0a9a1be0a6b6",
+          "message": "Verify archive state using a one shot in memory store (#12730)\n\n## Description \r\n\r\nAdded a shared in memory store which only keeps last checkpoint and its\r\ncontent in memory. This helps iterate over checkpoints really fast as we\r\ndon't need to use a db and can run verification without writing to\r\nrocksdb ever.\r\n\r\n## Test Plan \r\n\r\nAdded unit tests",
+          "timestamp": "2023-07-05T12:31:04-07:00",
+          "tree_id": "6697a09536303bbd52718973b2157347dce3e988",
+          "url": "https://github.com/MystenLabs/sui/commit/04092e736b96065c88d0ab138abd0a9a1be0a6b6"
+        },
+        "date": 1688586113897,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 352629,
+            "range": "± 22051",
             "unit": "ns/iter"
           }
         ]
