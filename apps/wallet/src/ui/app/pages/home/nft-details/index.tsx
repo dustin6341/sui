@@ -1,7 +1,12 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
+<<<<<<< HEAD
 import { useGetKioskContents } from '@mysten/core';
+=======
+// import { useFeatureValue } from '@growthbook/growthbook-react';
+// import { useGetKioskContents } from '@mysten/core';
+>>>>>>> 4d4f245934 (more work)
 import { ArrowUpRight12, ArrowRight16 } from '@mysten/icons';
 import { hasPublicTransfer, formatAddress } from '@mysten/sui.js';
 import cl from 'classnames';
