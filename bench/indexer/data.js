@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688580016795,
+  "lastUpdate": 1688580450800,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -989,6 +989,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 272505,
             "range": "± 21919",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "eugene@mystenlabs.com",
+            "name": "Eugene Boguslavsky",
+            "username": "ebmifa"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "94803f6d3d162e6ed7c432b475282734d69c09cb",
+          "message": "Downgrading to sui v1.5.0 (#12844)\n\n## Description \r\nDowngrading to sui v1.5.0 since we need to re-cut the branch\r\n\r\n## Test Plan \r\n👀",
+          "timestamp": "2023-07-05T18:00:13Z",
+          "tree_id": "9edb380c2e54ed1cdf3819bfbf69f8f0537df164",
+          "url": "https://github.com/MystenLabs/sui/commit/94803f6d3d162e6ed7c432b475282734d69c09cb"
+        },
+        "date": 1688580448715,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 308731,
+            "range": "± 17301",
             "unit": "ns/iter"
           }
         ]
