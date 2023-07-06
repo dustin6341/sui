@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688678546942,
+  "lastUpdate": 1688680176842,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -1349,6 +1349,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 303745,
             "range": "± 17141",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "81660174+mwtian@users.noreply.github.com",
+            "name": "mwtian",
+            "username": "mwtian"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "deccd8faccf95e36b588106a7179397497123d6e",
+          "message": "[Congestion] reduce per-object transaction queue length limit from 1000 to 200 (#12860)\n\n## Description \r\n\r\nWhen transactions are congested on the same shared object, the cheapest\r\ntransaction types (e.g. incrementing a shared counter) support 50 ~ 100\r\ntransaction/sec per-object from testing. We need to reduce the\r\ntransaction queue length limit to a more reasonable value, to avoid\r\ndelaying checkpoint building and epoch change too much when an object is\r\ncongested.\r\n\r\nIt is still possible to cause congestion on an object with more\r\nexpensive transactions locking the object for > 0.1s. In future, a limit\r\nwill be added for the max queueing time, e.g. do not sign new\r\ntransactions touch a shared object when there is a transaction waiting\r\nfor the object for >= 2s.\r\n\r\n## Test Plan \r\n\r\nCI\r\n\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2023-07-06T21:39:02Z",
+          "tree_id": "f4f38df42543126e1080b1b3a2701230727b76bb",
+          "url": "https://github.com/MystenLabs/sui/commit/deccd8faccf95e36b588106a7179397497123d6e"
+        },
+        "date": 1688680174733,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 354667,
+            "range": "± 15118",
             "unit": "ns/iter"
           }
         ]
