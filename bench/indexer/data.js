@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688667427275,
+  "lastUpdate": 1688678546942,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -1319,6 +1319,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 307979,
             "range": "± 29409",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "103447440+mystenmark@users.noreply.github.com",
+            "name": "Mark Logan",
+            "username": "mystenmark"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "33e1e140371f774cf0f02b9c27371cb8a779a039",
+          "message": "Do not use VerifiedTransaction type on clients (#12757)\n\nThis PR paves the way for moving to stateful authenticators, which are\r\ngenerally difficult or impossible to use correctly on clients until we\r\nhave better light client infrastructure.\r\n\r\nVerifiedTransaction is intended to prevent unverified transactions from\r\nentering the validator core accidentally, so their use on clients was\r\nunnecessary to begin with.\r\n\r\nNote that TransactionOrchestrator continues to use VerifiedTransaction -\r\nthis is for two reasons:\r\n- it has an AuthorityState handle so it is easy for it to do so even\r\nwith a stateful authenticator\r\n- it should catch bad signatures early rather than relying on validators\r\nto do that",
+          "timestamp": "2023-07-06T14:14:57-07:00",
+          "tree_id": "27c508a89070427ff3da5dbf40e43b9789cd1d22",
+          "url": "https://github.com/MystenLabs/sui/commit/33e1e140371f774cf0f02b9c27371cb8a779a039"
+        },
+        "date": 1688678545182,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 303745,
+            "range": "± 17141",
             "unit": "ns/iter"
           }
         ]
