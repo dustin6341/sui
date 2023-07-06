@@ -25,6 +25,7 @@ interface Props {
 
 export function TransactionsActivityTable({
 	disablePagination,
+	refetchInterval,
 	initialLimit = DEFAULT_TRANSACTIONS_LIMIT,
 }: Props) {
 	const [limit, setLimit] = useState(initialLimit);
@@ -35,9 +36,10 @@ export function TransactionsActivityTable({
 		cacheTime: 24 * 60 * 60 * 1000,
 		staleTime: Infinity,
 		retry: false,
+		refetchInterval: refetchInterval,
 	});
 
-	const transactions = useGetTransactionBlocks(undefined, limit);
+	const transactions = useGetTransactionBlocks(undefined, limit, refetchInterval);
 	const { data, isFetching, pagination, isLoading, isError } = useCursorPagination(transactions);
 
 	const cardData = data ? genTableDataFromTxData(data.data) : undefined;
