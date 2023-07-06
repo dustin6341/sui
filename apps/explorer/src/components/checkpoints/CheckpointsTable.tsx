@@ -42,7 +42,8 @@ export function CheckpointsTable({
 
 	const checkpoints = useGetCheckpoints(initialCursor, limit, refetchInterval);
 
-	const { data, isFetching, pagination, isLoading, isError } = useCursorPagination(checkpoints);
+	const { data, isFetching, pagination, isLoading, isRefetching, isError } =
+		useCursorPagination(checkpoints);
 
 	const count = useMemo(() => {
 		if (maxCursor) {
@@ -66,7 +67,7 @@ export function CheckpointsTable({
 					Failed to load Checkpoints
 				</div>
 			)}
-			{isLoading || isFetching || !cardData ? (
+			{!isRefetching && (isLoading || isFetching || !cardData) ? (
 				<PlaceholderTable
 					rowCount={Number(limit)}
 					rowHeight="16px"
@@ -75,7 +76,7 @@ export function CheckpointsTable({
 				/>
 			) : (
 				<div>
-					<TableCard data={cardData.data} columns={cardData.columns} />
+					<TableCard data={cardData!.data} columns={cardData!.columns} />
 				</div>
 			)}
 

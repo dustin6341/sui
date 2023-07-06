@@ -40,7 +40,8 @@ export function TransactionsActivityTable({
 	});
 
 	const transactions = useGetTransactionBlocks(undefined, limit, refetchInterval);
-	const { data, isFetching, pagination, isLoading, isError } = useCursorPagination(transactions);
+	const { data, isFetching, pagination, isLoading, isError, isRefetching } =
+		useCursorPagination(transactions);
 
 	const cardData = data ? genTableDataFromTxData(data.data) : undefined;
 
@@ -52,7 +53,7 @@ export function TransactionsActivityTable({
 				</div>
 			)}
 			<div className="flex flex-col space-y-5 text-left xl:pr-10">
-				{isLoading || isFetching || !cardData ? (
+				{!isRefetching && (isLoading || isFetching || !cardData) ? (
 					<PlaceholderTable
 						rowCount={limit}
 						rowHeight="16px"
@@ -61,7 +62,7 @@ export function TransactionsActivityTable({
 					/>
 				) : (
 					<div>
-						<TableCard data={cardData.data} columns={cardData.columns} />
+						<TableCard data={cardData!.data} columns={cardData!.columns} />
 					</div>
 				)}
 
