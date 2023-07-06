@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688664247182,
+  "lastUpdate": 1688667427275,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -1289,6 +1289,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 308338,
             "range": "± 15140",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "8418040+longbowlu@users.noreply.github.com",
+            "name": "Lu Zhang",
+            "username": "longbowlu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "68b28fb620ea4e99225fe4fcb622fe8fa00fde16",
+          "message": "Reference Oracle Implementation (#12854)\n\n## Description \r\n\r\nThis PR implements the off chain part of an oracle Proof of Concept. \r\n\r\n## Test Plan \r\n\r\nTested in different networks.\r\n\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes\r\nThis PR implements the off chain part of an oracle Proof of Concept.\r\n\r\n---------\r\n\r\nCo-authored-by: jk jensen <azjkjensen@gmail.com>",
+          "timestamp": "2023-07-06T18:09:53Z",
+          "tree_id": "28d7e1c6004806c49c4cf67825324954df05bc78",
+          "url": "https://github.com/MystenLabs/sui/commit/68b28fb620ea4e99225fe4fcb622fe8fa00fde16"
+        },
+        "date": 1688667425129,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 307979,
+            "range": "± 29409",
             "unit": "ns/iter"
           }
         ]
