@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688655530167,
+  "lastUpdate": 1688664247182,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -1259,6 +1259,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 309087,
             "range": "± 18639",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "2895723+tzakian@users.noreply.github.com",
+            "name": "Tim Zakian",
+            "username": "tzakian"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "331fa2da7e714fd787a1b0990e73549b9d48b349",
+          "message": "[storage] Add per-epoch object marker table for shared object deletion and transfer-to-object (#12852)\n\n## Description \r\n\r\nThis adds a new table to the ``PerpetualTables` that holds the set of\r\nreceived and shared deleted objects during the epoch.\r\n\r\nThis table is not currently used anywhere and is unused. However, both\r\nshared-object deletion #12623 and transfer-to-object #12611 PRs rely on\r\nthis table.\r\n\r\nThis table can be pruned at epoch boundaries so the table key contains\r\nthe epoch ID.\r\n\r\n@laura-makdah and I have discussed and we're happy to either land this\r\nsoon, or to wait until one or the other above PRs is ready to land and\r\nland this change at the same time. Either way this change on its own\r\nshould be fine to land any time as the new table is not used anywhere\r\nyet.\r\n\r\n## Test Plan \r\n\r\nNot tested yet -- functionality will be tested in the two PRs being\r\nbuilt on top of this.\r\n\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2023-07-06T17:14:16Z",
+          "tree_id": "3a4dd1c6c5bc17ced64bde4c9c89cb534c4c0fe0",
+          "url": "https://github.com/MystenLabs/sui/commit/331fa2da7e714fd787a1b0990e73549b9d48b349"
+        },
+        "date": 1688664244451,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 308338,
+            "range": "± 15140",
             "unit": "ns/iter"
           }
         ]
