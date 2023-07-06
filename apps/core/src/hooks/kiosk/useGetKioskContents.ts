@@ -4,15 +4,24 @@
 import { JsonRpcProvider, SuiAddress, SuiObjectResponse } from '@mysten/sui.js';
 import { KioskData, KioskItem, KioskOwnerCap, fetchKiosk, getOwnedKiosks } from '@mysten/kiosk';
 import { useQuery } from '@tanstack/react-query';
-import { useRpcClient } from '../api/RpcClientContext';
-import { ORIGINBYTE_KIOSK_OWNER_TOKEN, getKioskIdFromDynamicFields } from '../utils/kiosk';
+import { useRpcClient } from '../../api/RpcClientContext';
+import { ORIGINBYTE_KIOSK_OWNER_TOKEN, getKioskIdFromDynamicFields } from '../../utils/kiosk';
 
 export type KioskContents = Omit<KioskData, 'items'> & {
 	items: Partial<KioskItem & SuiObjectResponse>[];
 	ownerCap?: string;
 };
 
-export type OriginByteKioskContents = { items: SuiObjectResponse[] };
+export enum KioskTypes {
+	SUI = 'sui',
+	ORIGINBYTE = 'originByte',
+}
+
+export type OriginByteKiosk = {
+	items: SuiObjectResponse[];
+	kioskId: SuiAddress;
+	type: KioskTypes;
+};
 
 async function getOriginByteKioskContents(address: SuiAddress, rpc: JsonRpcProvider) {
 	const data = await rpc.getOwnedObjects({
@@ -26,7 +35,7 @@ async function getOriginByteKioskContents(address: SuiAddress, rpc: JsonRpcProvi
 	});
 
 	const ids = data.data.map((object) => getKioskIdFromDynamicFields(object));
-	const kiosks = new Map<string, OriginByteKioskContents>();
+	const kiosks = new Map<string, OriginByteKiosk>();
 
 	// fetch the user's kiosks
 	const ownedKiosks = await rpc.multiGetObjects({
@@ -56,7 +65,9 @@ async function getOriginByteKioskContents(address: SuiAddress, rpc: JsonRpcProvi
 			});
 
 			kiosks.set(kiosk.data.objectId, {
-				items: kioskContent.map((object) => ({ ...object, kioskId: kiosk.data?.objectId })),
+				items: kioskContent,
+				kioskId: kiosk.data.objectId,
+				type: KioskTypes.ORIGINBYTE,
 			});
 		}),
 	);
@@ -66,7 +77,6 @@ async function getOriginByteKioskContents(address: SuiAddress, rpc: JsonRpcProvi
 
 async function getSuiKioskContents(address: SuiAddress, rpc: JsonRpcProvider) {
 	const ownedKiosks = await getOwnedKiosks(rpc, address!);
-
 	const kiosks = new Map<string, KioskContents>();
 
 	await Promise.all(
@@ -108,7 +118,6 @@ export function useGetKioskContents(address?: SuiAddress | null, disableOriginBy
 			);
 
 			const lookup = list.reduce((acc, curr) => {
-				console.log(curr.data.objectId);
 				acc.set(curr.data.objectId, curr.kioskId);
 				return acc;
 			}, new Map<string, string>());

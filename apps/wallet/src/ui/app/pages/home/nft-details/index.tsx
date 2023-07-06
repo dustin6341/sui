@@ -1,12 +1,6 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-<<<<<<< HEAD
-import { useGetKioskContents } from '@mysten/core';
-=======
-// import { useFeatureValue } from '@growthbook/growthbook-react';
-// import { useGetKioskContents } from '@mysten/core';
->>>>>>> 4d4f245934 (more work)
 import { ArrowUpRight12, ArrowRight16 } from '@mysten/icons';
 import { hasPublicTransfer, formatAddress } from '@mysten/sui.js';
 import cl from 'classnames';
@@ -24,6 +18,7 @@ import { NFTDisplayCard } from '_components/nft-display';
 import { useGetNFTMeta, useNFTBasicData, useOwnedNFT } from '_hooks';
 import { useExplorerLink } from '_src/ui/app/hooks/useExplorerLink';
 import PageTitle from '_src/ui/app/shared/PageTitle';
+import { useGetKioskContents } from '@mysten/core';
 
 function NFTDetailsPage() {
 	const [searchParams] = useSearchParams();
@@ -36,6 +31,7 @@ function NFTDetailsPage() {
 	const { data } = useGetKioskContents(address);
 
 	const isContainedInSuiKiosk = data?.list.some((k) => k.data?.objectId === nftId);
+	const kioskItem = data?.list.find((k) => k.data?.objectId === nftId);
 
 	// Extract either the attributes, or use the top-level NFT fields:
 	const metaFields =
@@ -78,7 +74,13 @@ function NFTDetailsPage() {
 						<PageTitle back="/nfts" />
 						<div className="flex flex-1 flex-col flex-nowrap items-stretch gap-8">
 							<div className="flex flex-col flex-nowrap items-center gap-3 self-center">
-								<NFTDisplayCard objectId={nftId!} size="xl" borderRadius="xl" playable />
+								<NFTDisplayCard
+									objectId={nftId!}
+									size="xl"
+									borderRadius="xl"
+									playable
+									isLocked={kioskItem.isLocked}
+								/>
 								{nftId ? (
 									<Link
 										color="steelDark"
@@ -163,7 +165,7 @@ function NFTDetailsPage() {
 								</Collapse>
 							) : null}
 
-							{isContainedInSuiKiosk ? (
+							{isContainedInSuiKiosk && kioskItem.isLocked ? (
 								<div className="flex flex-col gap-2 mb-3">
 									<Button
 										after={<ArrowUpRight12 />}
@@ -195,21 +197,6 @@ function NFTDetailsPage() {
 									/>
 								</div>
 							)}
-							<div className="mb-3 flex flex-1 items-end">
-								<Button
-									variant="primary"
-									size="tall"
-									disabled={!isTransferable}
-									to={`/nft-transfer/${nftId}`}
-									title={
-										isTransferable
-											? undefined
-											: "Unable to send. NFT doesn't have public transfer method"
-									}
-									text="Send NFT"
-									after={<ArrowRight16 />}
-								/>
-							</div>
 						</div>
 					</>
 				) : (

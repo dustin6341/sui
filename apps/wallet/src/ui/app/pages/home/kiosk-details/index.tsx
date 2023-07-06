@@ -50,6 +50,7 @@ function KioskDetailsPage() {
 									showLabel
 									animateHover
 									borderRadius="xl"
+									isLocked={item.isLocked}
 								/>
 							</ErrorBoundary>
 						</Link>

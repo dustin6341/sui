@@ -4,9 +4,9 @@
 import {
 	ORIGINBYTE_KIOSK_MODULE,
 	ORIGINBYTE_KIOSK_OWNER_TOKEN,
+	getKioskIdFromDynamicFields,
 	useGetKioskContents,
 	useGetObject,
-	useGetOwnedObjects,
 	useRpcClient,
 } from '@mysten/core';
 import { take } from '@mysten/kiosk';
@@ -37,10 +37,15 @@ export function useTransferKioskItem({
 
 			const kioskId = kiosk.data?.lookup.get(objectId);
 			const suiKiosk = kiosk.data?.kiosks.sui.get(kioskId);
-			const isObKiosk = kiosk.data?.kiosks.sui.get(kioskId);
+			const isObKiosk = kiosk.data?.kiosks.originByte.get(kioskId);
+
+			if (!kioskId || (!suiKiosk && !isObKiosk)) {
+				throw new Error('Failed to find object in a kiosk');
+			}
 
 			if (suiKiosk && objectData.data?.data?.type && suiKiosk?.ownerCap) {
 				const tx = new TransactionBlock();
+				// take item out of kiosk
 				const obj = await take(
 					tx,
 					objectData.data?.data?.type,
@@ -48,77 +53,52 @@ export function useTransferKioskItem({
 					suiKiosk?.ownerCap,
 					objectId,
 				);
-
+				// transfer as usual
 				tx.transferObjects([obj], tx.pure(address));
-
-				const ex = await signer.signAndExecuteTransactionBlock({
+				return signer.signAndExecuteTransactionBlock({
 					transactionBlock: tx,
 					options: {
-						showBalanceChanges: true,
+						showInput: true,
 						showEffects: true,
 						showEvents: true,
-						showObjectChanges: true,
-						showInput: true,
 					},
 				});
-
-				return ex;
 			}
 
-			// // fetch the kiosks for the active address
-			// const ownedKiosks = await rpc.multiGetObjects({
-			// 	ids: kioskIds!,
-			// 	options: { showContent: true },
-			// });
+			if (isObKiosk) {
+				const tx = new TransactionBlock();
+				const recipientKiosks = await rpc.getOwnedObjects({
+					owner: to,
+					options: { showContent: true },
+					filter: { StructType: ORIGINBYTE_KIOSK_OWNER_TOKEN },
+				});
+				const recipientKiosk = recipientKiosks.data[0];
+				const recipientKioskId = getKioskIdFromDynamicFields(recipientKiosk);
 
-			// // find the kiosk id containing the object that we want to transfer
-			// const kioskId = ownedKiosks.find(async (kiosk) => {
-			// 	if (!kiosk.data?.objectId) return false;
-			// 	const objects = await rpc.getDynamicFields({
-			// 		parentId: kiosk.data.objectId,
-			// 	});
-			// 	return objects.data.some((obj) => obj.objectId === objectId);
-			// })?.data?.objectId;
-
-			// if (!kioskId) throw new Error('failed to find kiosk containing object');
-
-			// // determine if the recipient address already owns a kiosk
-			// const recipientKiosks = await rpc.getOwnedObjects({
-			// 	owner: to,
-			// 	options: { showContent: true },
-			// 	filter: { StructType: ORIGINBYTE_KIOSK_OWNER_TOKEN },
-			// });
-
-			// const recipientKiosk = recipientKiosks.data[0]?.data;
-
-			// if (
-			// 	recipientKiosk &&
-			// 	recipientKiosk.content &&
-			// 	'fields' in recipientKiosk.content &&
-			// 	recipientKiosk.content.fields.kiosk
-			// ) {
-			// 	const recipientKioskId = recipientKiosk.content.fields.kiosk;
-			// 	tx.moveCall({
-			// 		target: `${ORIGINBYTE_KIOSK_MODULE}::p2p_transfer`,
-			// 		typeArguments: [objectType],
-			// 		arguments: [tx.object(kioskId), tx.object(recipientKioskId), tx.pure(objectId)],
-			// 	});
-			// } else {
-			// 	tx.moveCall({
-			// 		target: `${ORIGINBYTE_KIOSK_MODULE}::p2p_transfer_and_create_target_kiosk`,
-			// 		typeArguments: [objectType],
-			// 		arguments: [tx.object(kioskId), tx.pure(to), tx.pure(objectId)],
-			// 	});
-			// }
-
-			// return signer.signAndExecuteTransactionBlock({
-			// 	transactionBlock: tx,
-			// 	options: {
-			// 		showInput: true,
-			// 		showEffects: true,
-			// 		showEvents: true,
-			// 	},
-			// });
+				if (kioskId) {
+					console.log('here');
+					tx.moveCall({
+						target: `${ORIGINBYTE_KIOSK_MODULE}::p2p_transfer`,
+						typeArguments: [objectType],
+						arguments: [tx.object(kioskId), tx.object(recipientKioskId), tx.pure(objectId)],
+					});
+					console.log('here');
+				} else {
+					tx.moveCall({
+						target: `${ORIGINBYTE_KIOSK_MODULE}::p2p_transfer_and_create_target_kiosk`,
+						typeArguments: [objectType],
+						arguments: [tx.object(kioskId), tx.pure(to), tx.pure(objectId)],
+					});
+				}
+				return signer.signAndExecuteTransactionBlock({
+					transactionBlock: tx,
+					options: {
+						showInput: true,
+						showEffects: true,
+						showEvents: true,
+					},
+				});
+			}
 		},
 	});
 }

@@ -35,7 +35,7 @@ export interface NFTDisplayCardProps extends VariantProps<typeof nftDisplayCardS
 	size: NftImageProps['size'];
 	borderRadius?: NftImageProps['borderRadius'];
 	playable?: boolean;
-	className?: string;
+	isLocked?: boolean;
 }
 
 export function NFTDisplayCard({
@@ -46,7 +46,7 @@ export function NFTDisplayCard({
 	animateHover,
 	borderRadius = 'md',
 	playable,
-	className,
+	isLocked,
 }: NFTDisplayCardProps) {
 	const { data: objectData } = useGetObject(objectId);
 	const { data: nftMeta, isLoading } = useGetNFTMeta(objectId);
@@ -71,6 +71,7 @@ export function NFTDisplayCard({
 						showLabel={!wideView}
 						borderRadius={borderRadius}
 						size={size}
+						isLocked={isLocked}
 						video={video}
 					/>
 				)}

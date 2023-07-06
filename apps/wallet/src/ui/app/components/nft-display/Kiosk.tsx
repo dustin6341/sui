@@ -20,21 +20,24 @@ type KioskProps = {
 } & Partial<NFTDisplayCardProps>;
 
 const styles: Record<number, string> = {
-	0: 'group-hover:scale-95 shadow-md z-20 -top-[0px]',
-	1: 'scale-[0.975] group-hover:-rotate-6 group-hover:-translate-x-6 group-hover:-translate-y-3 z-10 -top-[6px]',
-	2: 'scale-95 group-hover:rotate-6 group-hover:translate-x-6 group-hover:-translate-y-3 z-0 -top-[12px]',
+	0: 'group-hover:scale-95 shadow-md z-20 -top-[0px] group-hover:shadow-blurXl',
+	1: 'scale-[0.975] group-hover:-rotate-6 group-hover:-translate-x-6 group-hover:-translate-y-3 z-10 -top-[6px] group-hover:shadow-lg',
+	2: 'scale-95 group-hover:rotate-6 group-hover:translate-x-6 group-hover:-translate-y-3 z-0 -top-[12px] group-hover:shadow-xl',
 };
 
 export function Kiosk({ object, ...nftDisplayCardProps }: KioskProps) {
 	const address = useActiveAddress();
-	const { data: kioskData } = useGetKioskContents(address);
+	const { data: kioskData, isLoading } = useGetKioskContents(address);
+
+	if (isLoading) return null;
+
 	const kioskId = getKioskIdFromDynamicFields(object);
 	const suiKiosk = kioskData?.kiosks.sui.get(kioskId) as KioskContents;
 	const obKiosk = kioskData?.kiosks.originByte.get(kioskId) as OriginByteKioskContents;
 	const items = (suiKiosk?.items ?? obKiosk.items).sort((item) => (hasDisplayData(item) ? -1 : 1));
 
 	return (
-		<div className="relative hover:bg-transparent group transition-all flex justify-between h-36 w-36 rounded-xl">
+		<div className="relative hover:bg-transparent group transition-all flex justify-between h-36 w-36 rounded-xl transform-gpu">
 			<div className="absolute z-0">
 				{items.length &&
 					items.slice(0, 3).map((item, idx) => {
@@ -43,13 +46,12 @@ export function Kiosk({ object, ...nftDisplayCardProps }: KioskProps) {
 						return (
 							<div
 								className={cl(
-									'absolute transition-all ease-ease-out-cubic duration-250 rounded-xl',
 									items.length > 1 ? styles[idx] : 'group-hover:scale-105',
+									'absolute transition-all ease-ease-out-cubic duration-250 rounded-xl',
 								)}
 							>
 								<NftImage
 									src={display.image_url}
-									// title={display.description}
 									borderRadius={nftDisplayCardProps.borderRadius}
 									size={nftDisplayCardProps.size}
 									name="Kiosk"

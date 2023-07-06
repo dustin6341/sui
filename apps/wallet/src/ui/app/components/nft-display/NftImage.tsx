@@ -1,12 +1,13 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-import { Image32, MediaPlay16 } from '@mysten/icons';
+import { Image32, LockLocked16, MediaPlay16 } from '@mysten/icons';
 import { cva } from 'class-variance-authority';
 import cl from 'classnames';
 import { useState } from 'react';
 
 import type { VariantProps } from 'class-variance-authority';
+import { IconTooltip, Tooltip } from '../../shared/tooltip';
 
 export const nftImageStyles = cva('overflow-hidden bg-gray-40 relative', {
 	variants: {
@@ -49,6 +50,7 @@ export interface NftImageProps extends VariantProps<typeof nftImageStyles> {
 	showLabel?: boolean;
 	playable?: boolean;
 	className?: string;
+	isLocked?: boolean;
 }
 
 export function NftImage({
@@ -62,6 +64,7 @@ export function NftImage({
 	video,
 	playable,
 	className,
+	isLocked,
 }: NftImageProps) {
 	const [error, setError] = useState(false);
 	const imgCls = cl(
@@ -108,6 +111,11 @@ export function NftImage({
 						<MediaPlay16 className="h-8 w-8" />
 					</div>
 				)
+			) : null}
+			{isLocked ? (
+				<div className="right-1.5 bottom-1.5 flex items-center justify-center absolute h-6 w-6 bg-gray-100 text-white rounded-md">
+					<LockLocked16 className="h-4 w-4" />
+				</div>
 			) : null}
 		</div>
 	);

@@ -38,5 +38,5 @@ export * from './utils/persistableStorage';
 export * from './hooks/useGetBinaryVersion';
 export * from './hooks/useProductAnalyticsConfig';
 export * from './hooks/useCookieConsentBanner';
-export * from './hooks/useGetKioskContents';
+export * from './hooks/kiosk/useGetKioskContents';
 export * from './utils/kiosk';
