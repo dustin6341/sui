@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688612878105,
+  "lastUpdate": 1688638920306,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -1199,6 +1199,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 327220,
             "range": "± 23943",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ashok@mystenlabs.com",
+            "name": "Ashok Menon",
+            "username": "amnn"
+          },
+          "committer": {
+            "email": "amenon94@gmail.com",
+            "name": "Ashok Menon",
+            "username": "amnn"
+          },
+          "distinct": true,
+          "id": "d97f6fa5ae5ee76584e93e58b49ed947dad84dc8",
+          "message": "[protocol-upgrades] Add ability to add abilities\n\nRelax the restriction on adding new abilities to types introduced\nduring system package upgrades -- only the `key` ability remains\nrestricted.\n\nThis change is not guarded by a protocol config, because it is in the\ncodepath that decides whether an system package upgrade is compatible\nin the first place -- i.e. if a quorum of validators do not have this\nchange, the proposal to upgrade to a package where an existing type\nhas additional abilities will not succeed.  This codepath is also not\nrun on fullnodes (who assume that if a system package upgrade proposal\nwas executed successfully, validators confirmed that the upgrade was\ncompatible), so again, there is not a need for a feature gate in the\nprotocol config to coordinate the launch of this change -- it is\nself-coordinating.\n\nTest Plan:\n\nUpdated existing E2E tests and added a new one for the new restriction\non `key`:\n\n```\nsui-e2e-tests$ cargo simtest\n```",
+          "timestamp": "2023-07-06T11:11:48+01:00",
+          "tree_id": "ec6204f5ad4023d858c5671399546e4bed7751e9",
+          "url": "https://github.com/MystenLabs/sui/commit/d97f6fa5ae5ee76584e93e58b49ed947dad84dc8"
+        },
+        "date": 1688638918319,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 335087,
+            "range": "± 25079",
             "unit": "ns/iter"
           }
         ]
