@@ -5,6 +5,7 @@ import {
 	ORIGINBYTE_KIOSK_MODULE,
 	ORIGINBYTE_KIOSK_OWNER_TOKEN,
 	useGetKioskContents,
+	useGetObject,
 	useGetOwnedObjects,
 	useRpcClient,
 } from '@mysten/core';
@@ -26,21 +27,42 @@ export function useTransferKioskItem({
 	const address = useActiveAddress();
 
 	const kiosk = useGetKioskContents(address);
-	console.log(objectType);
+	const objectData = useGetObject(objectId);
+
 	return useMutation({
 		mutationFn: async (to: SuiAddress) => {
 			if (!to || !signer || !objectType) {
 				throw new Error('Missing data');
 			}
 
-			const suiKiosk = kiosk.data?.kiosks.sui.get(objectId);
-			const originByteKiosk = kiosk.data?.kiosks.sui.get(objectId);
-			console.log(suiKiosk);
-			if (suiKiosk) {
-				console.log('here');
-				console.log(suiKiosk);
+			const kioskId = kiosk.data?.lookup.get(objectId);
+			const suiKiosk = kiosk.data?.kiosks.sui.get(kioskId);
+			const isObKiosk = kiosk.data?.kiosks.sui.get(kioskId);
 
+			if (suiKiosk && objectData.data?.data?.type && suiKiosk?.ownerCap) {
 				const tx = new TransactionBlock();
+				const obj = await take(
+					tx,
+					objectData.data?.data?.type,
+					kioskId,
+					suiKiosk?.ownerCap,
+					objectId,
+				);
+
+				tx.transferObjects([obj], tx.pure(address));
+
+				const ex = await signer.signAndExecuteTransactionBlock({
+					transactionBlock: tx,
+					options: {
+						showBalanceChanges: true,
+						showEffects: true,
+						showEvents: true,
+						showObjectChanges: true,
+						showInput: true,
+					},
+				});
+
+				return ex;
 			}
 
 			// // fetch the kiosks for the active address
