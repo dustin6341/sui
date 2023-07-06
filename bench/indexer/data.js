@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688638920306,
+  "lastUpdate": 1688655530167,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -1229,6 +1229,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 335087,
             "range": "± 25079",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "akihidis@gmail.com",
+            "name": "Anastasios Kichidis",
+            "username": "akichidis"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a749fef58c93e02ab29cdb0e7465fc35ed61938d",
+          "message": "[narwhal] use the LeaderSwapTable in the leader schedule (#12515)\n\n## Description \r\n\r\nFollow up of https://github.com/MystenLabs/sui/pull/12465\r\n\r\nThis PR is:\r\n* Introducing a new `protocol_config` feature flag\r\n`narwhal_new_leader_election_schedule` , so we keep all the new changes\r\ndisabled until we decide to enable on a new protocol version\r\n* Introducing the `LeaderSchedule` which from now on will be responsible\r\nfor crafting the leader schedule and used to perform the leader\r\nelection.\r\n* Is updating the leader schedule with the new scores every `K` commit\r\nrounds\r\n* Is injecting the `LeaderSchedule` to the primary node so it can be\r\nused from the `proposer` module as well since the schedule now can be\r\nupdated\r\n\r\nNext steps:\r\n\r\n- [x] calculate the swap table on every K committed subdags & wire into\r\nthe leader election algorithm\r\n- [x] ensure whole feature is gated behind a protocol config feature\r\nflag - and probably a config switch as we might need to have it disabled\r\nfor longer than a release cycle.\r\n- [ ] restore correct swap table after crash/recovery\r\n- [ ] modify the commit path so we repeat the leader election when we\r\ncommit recursively\r\n- [ ] modify the proposer to support the new leader election\r\ncapabilities\r\n- [ ] add testing\r\n\r\n## Test Plan \r\n\r\nAdded unit tests\r\n\r\n---\r\nIf your changes are not user-facing and not a breaking change, you can\r\nskip the following section. Otherwise, please indicate what changed, and\r\nthen add to the Release Notes section as highlighted during the release\r\nprocess.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2023-07-06T15:51:03+01:00",
+          "tree_id": "f79816dcc341cc743c2e16860376701ad9c1b543",
+          "url": "https://github.com/MystenLabs/sui/commit/a749fef58c93e02ab29cdb0e7465fc35ed61938d"
+        },
+        "date": 1688655527565,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 309087,
+            "range": "± 18639",
             "unit": "ns/iter"
           }
         ]
