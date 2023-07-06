@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688599892005,
+  "lastUpdate": 1688612878105,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -1169,6 +1169,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 415218,
             "range": "± 35425",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "103447440+mystenmark@users.noreply.github.com",
+            "name": "Mark Logan",
+            "username": "mystenmark"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "199e0b0c43ade6f78377ed514012273749089657",
+          "message": "Use delete_range instead of clear() to avoid race condition (#12855)\n\nbecause clear() drops and re-creates the table without holding a lock,\r\nit can cause crashes if other threads happen to try to write to or read\r\nfrom the table being cleared. I don't think it makes sense to add\r\nlocking to every DBMap access just to fix this case, so I'm just going\r\nto avoid calling clear().",
+          "timestamp": "2023-07-05T19:58:22-07:00",
+          "tree_id": "a77552a69559f45a57eb25f04b30981349c47697",
+          "url": "https://github.com/MystenLabs/sui/commit/199e0b0c43ade6f78377ed514012273749089657"
+        },
+        "date": 1688612875444,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 327220,
+            "range": "± 23943",
             "unit": "ns/iter"
           }
         ]
