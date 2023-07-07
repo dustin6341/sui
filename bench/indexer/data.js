@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688680176842,
+  "lastUpdate": 1688692309599,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -1379,6 +1379,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 354667,
             "range": "± 15118",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "106645797+sadhansood@users.noreply.github.com",
+            "name": "Sadhan Sood",
+            "username": "sadhansood"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "935aa88e7a3627e58bcbb2b0eb87c121743ee100",
+          "message": "Track live object set size during expensive checks (#12846)\n\n## Description \r\n\r\nWe would like to track the application level object set size vs db level\r\nobject set size (which we already have from rocksdb metrics i.e. objects\r\n+ indirect objects sst table size).\r\nAdding this as a part of the expensive checks.\r\n\r\n## Test Plan \r\n\r\nExisting tests",
+          "timestamp": "2023-07-06T18:04:40-07:00",
+          "tree_id": "995eab7af3021d5f30c5e1cc300e0d3c7ccb0fed",
+          "url": "https://github.com/MystenLabs/sui/commit/935aa88e7a3627e58bcbb2b0eb87c121743ee100"
+        },
+        "date": 1688692306689,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 300529,
+            "range": "± 11103",
             "unit": "ns/iter"
           }
         ]
