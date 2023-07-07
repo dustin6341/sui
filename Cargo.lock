@@ -12064,6 +12064,7 @@ dependencies = [
  "num_cpus",
  "once_cell",
  "ouroboros 0.15.5",
+ "parking_lot 0.12.1",
  "proc-macro2 1.0.58",
  "prometheus",
  "quote 1.0.26",

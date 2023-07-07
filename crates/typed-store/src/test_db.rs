@@ -265,6 +265,11 @@ where
         Ok(())
     }
 
+    fn safe_clear(&self, rw_lock: Arc<parking_lot::RwLock<()>>) -> Result<(), TypedStoreError> {
+        let _guard = rw_lock.write();
+        self.clear()
+    }
+
     fn is_empty(&self) -> bool {
         let locked = self.rows.read().unwrap();
         locked.is_empty()

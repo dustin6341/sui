@@ -2,8 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 use crate::TypedStoreError;
 use async_trait::async_trait;
+use parking_lot::RwLock;
 use serde::{de::DeserializeOwned, Serialize};
 use std::ops::RangeBounds;
+use std::sync::Arc;
 use std::{borrow::Borrow, collections::BTreeMap, error::Error};
 
 pub trait Map<'a, K, V>
@@ -64,6 +66,10 @@ where
 
     /// Removes every key-value pair from the map.
     fn clear(&self) -> Result<(), Self::Error>;
+
+    /// Removes every key-value pair from map while guarding critical section with
+    /// the passed in rw lock
+    fn safe_clear(&self, rw_lock: Arc<RwLock<()>>) -> Result<(), TypedStoreError>;
 
     /// Returns true if the map is empty, otherwise false.
     fn is_empty(&self) -> bool;

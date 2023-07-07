@@ -42,6 +42,7 @@ use tracing::{error, info, instrument, warn};
 use self::{iter::Iter, keys::Keys, values::Values};
 use crate::rocks::safe_iter::SafeIter;
 pub use errors::TypedStoreError;
+use parking_lot::RwLock;
 use std::ops::Bound;
 use sui_macros::{fail_point, nondeterministic};
 
@@ -1726,12 +1727,25 @@ where
         Ok(())
     }
 
+    /// This method first drops the existing column family and then creates a new one
+    /// with the same name. The two operations are not atomic and hence it is possible
+    /// to get into a race condition where the column family has been dropped but new
+    /// one is not created yet
     #[instrument(level = "trace", skip_all, err)]
     fn clear(&self) -> Result<(), TypedStoreError> {
         let _ = self.rocksdb.drop_cf(&self.cf);
         self.rocksdb
             .create_cf(self.cf.clone(), &default_db_options().options)?;
         Ok(())
+    }
+
+    /// Same as `clear` but allows caller to guard the critical section with a
+    /// a read write lock. It is caller's responsibility to use the lock around
+    /// other db operations to prevent the race condition from happening
+    #[instrument(level = "trace", skip_all, err)]
+    fn safe_clear(&self, rw_lock: Arc<RwLock<()>>) -> Result<(), TypedStoreError> {
+        let _guard = rw_lock.write();
+        self.clear()
     }
 
     fn is_empty(&self) -> bool {
